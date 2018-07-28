@@ -1,4 +1,4 @@
-console.log('hello world change');
+console.log('hello world change 2');
 
 var time = require('time');
 exports.handler = (event, context, callback) => {
