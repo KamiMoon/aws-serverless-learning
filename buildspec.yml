@@ -3,6 +3,7 @@ phases:
   install:
     commands:
       - npm install
+      - npm run build
       - aws cloudformation package --template-file samTemplate.yaml --s3-bucket aws-serverless-learning
                                    --output-template-file outputSamTemplate.yaml
 artifacts:
