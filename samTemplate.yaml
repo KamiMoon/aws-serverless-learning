@@ -1,17 +1,44 @@
 
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Outputs the time
+Description: Movie CRUD
 Resources:
-  TimeFunction:
+  MoviesFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: dist/main.handler
       Runtime: nodejs8.10
       CodeUri: ./
       Events:
-        MyTimeApi:
+        ListMovies:
           Type: Api
           Properties:
-            Path: /TimeResource
-            Method: GET
+            Path: /movies
+            Method: get
+        CreateMovie:
+          Type: Api
+          Properties:
+            Path: /movies
+            Method: post
+        Movie:
+          Type: Api
+          Properties:
+            Path: /movies/{year}/{title}
+            Method: any
+  DynamoDBTable:
+     Type: AWS::DynamoDB::Table
+     Properties:
+       TableName: Movies 
+       AttributeDefinitions: 
+         - AttributeName: year
+           AttributeType: N
+         - AttributeName: title
+           KeyType: S
+       KeySchema: 
+         - AttributeName: year
+           KeyType: HASH
+         - AttributeName: title
+           KeyType: RANGE
+       ProvisionedThroughput: 
+         ReadCapacityUnits: 10
+         WriteCapacityUnits: 10

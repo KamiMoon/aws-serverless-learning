@@ -7,7 +7,7 @@
     "build": "webpack --config webpack.config.js",
     "watch": "webpack --watch",
     "test": "mocha tests/unit/",
-    "api": "sam local start-api --template samTemplate.yaml"
+    "api": "sam local start-api --template samTemplate.yaml --docker-network aws-local-network"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/KamiMoon/aws-serverless-learning#readme",
   "dependencies": {
+    "aws-sdk": "^2.282.1",
     "axios": "^0.18.0"
   },
   "devDependencies": {
