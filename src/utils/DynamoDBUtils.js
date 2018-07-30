@@ -1,5 +1,27 @@
 export default class DynamoDBUtils {
 
+    buildCreate(table, object) {
+        let result = {
+            TableName: table,
+            Item: object
+        }
+
+        return result;
+    }
+
+    buildGet(table, keys, object) {
+        let result = {
+            TableName: table,
+            Key: {}
+        }
+
+        keys.forEach(k => {
+            result.Key[k] = object[k];
+        });
+
+        return result;
+    }
+
     buildUpdate(table, keys, object) {
         let result = {
             TableName: table,
@@ -28,6 +50,19 @@ export default class DynamoDBUtils {
 
             i++;
         }
+
+        return result;
+    }
+
+    buildDelete(table, keys, object) {
+        let result = {
+            TableName: table,
+            Key: {}
+        }
+
+        keys.forEach(k => {
+            result.Key[k] = object[k];
+        });
 
         return result;
     }
