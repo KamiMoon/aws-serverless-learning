@@ -34,9 +34,9 @@ function handleRequest(event, context) {
         case "POST":
             return moviesDao.create(JSON.parse(body));
         case "PUT":
-            return moviesDao.update(body);
+            return moviesDao.update(JSON.parse(body));
         case "DELETE":
-            return moviesDao.remove(body);
+            return moviesDao.remove(JSON.parse(body));
         default:
             //TODO: handle this better
             console.log('Not matched')

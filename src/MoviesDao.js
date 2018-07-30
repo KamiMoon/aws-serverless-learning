@@ -1,5 +1,9 @@
 const AWS = require("aws-sdk");
 
+import DynamoDBUtils from './utils/DynamoDBUtils'
+
+const dynamoDBUtils = new DynamoDBUtils()
+
 //TODO: Make this more configurable
 AWS.config.update({
     region: "us-east-2",
@@ -10,6 +14,7 @@ AWS.config.update({
 const docClient = new AWS.DynamoDB.DocumentClient();
 
 const table = "Movies";
+const keys = ["year", "title"];
 
 export default class MoviesDao {
 
@@ -34,19 +39,8 @@ export default class MoviesDao {
     //TODO: paging
 
     update(movie) {
-        return docClient.update({
-            TableName: table,
-            Key: {
-                "year": movie.year,
-                "title": movie.title
-            },
-            UpdateExpression: "remove info.actors[0]",
-            ConditionExpression: "size(info.actors) >= :num",
-            ExpressionAttributeValues: {
-                ":num": 3
-            },
-            ReturnValues: "UPDATED_NEW"
-        }).promise();
+        const updateExpr = dynamoDBUtils.buildUpdate(table, keys, movie);
+        return docClient.update(updateExpr).promise();
     }
 
     remove(movie) {
