@@ -22,3 +22,14 @@ npm run api
 
 
 populate db etc
+
+
+
+TODO:
+
+1)  Finish API
+2)  Deploy
+3)  Tests
+4)  Config swtich db local/prod
+5)  Data stay/config local
+6)  Distrubtion size - don't include dev deps

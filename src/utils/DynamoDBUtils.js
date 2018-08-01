@@ -1,10 +1,9 @@
-export default class DynamoDBUtils {
-
+class DynamoDBUtils {
     buildCreate(table, object) {
         let result = {
             TableName: table,
             Item: object
-        }
+        };
 
         return result;
     }
@@ -13,7 +12,7 @@ export default class DynamoDBUtils {
         let result = {
             TableName: table,
             Key: {}
-        }
+        };
 
         keys.forEach(k => {
             result.Key[k] = object[k];
@@ -26,10 +25,10 @@ export default class DynamoDBUtils {
         let result = {
             TableName: table,
             Key: {},
-            UpdateExpression: '',
+            UpdateExpression: "",
             ExpressionAttributeValues: {},
             ReturnValues: "UPDATED_NEW"
-        }
+        };
 
         keys.forEach(k => {
             result.Key[k] = object[k];
@@ -41,12 +40,12 @@ export default class DynamoDBUtils {
             let value = object[key];
 
             if (i === 0) {
-                result.UpdateExpression += 'SET ' + key + ' = :' + key
+                result.UpdateExpression += "SET " + key + " = :" + key;
             } else {
-                result.UpdateExpression += ', ' + key + ' = :' + key;
+                result.UpdateExpression += ", " + key + " = :" + key;
             }
 
-            result.ExpressionAttributeValues[':' + key] = value;
+            result.ExpressionAttributeValues[":" + key] = value;
 
             i++;
         }
@@ -58,7 +57,7 @@ export default class DynamoDBUtils {
         let result = {
             TableName: table,
             Key: {}
-        }
+        };
 
         keys.forEach(k => {
             result.Key[k] = object[k];
@@ -67,3 +66,7 @@ export default class DynamoDBUtils {
         return result;
     }
 }
+
+const dynamoDBUtils = new DynamoDBUtils();
+
+export default dynamoDBUtils;

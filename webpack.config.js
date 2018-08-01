@@ -13,6 +13,11 @@ module.exports = {
         libraryTarget: "commonjs2",
         filename: "[name].js"
     },
+    resolve: {
+        alias: {
+            'src': path.resolve(__dirname, 'src/')
+        }
+    },
     module: {
         rules: [
             // First, run the linter.
