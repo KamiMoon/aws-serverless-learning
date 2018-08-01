@@ -17,6 +17,13 @@ export default class DyanmoDBDao {
         return docClient.get(expr).promise();
     }
 
+    query(obj) {
+        const expr = dynamoDBUtils.buildQuery(this.table, this.keys, obj);
+
+        console.log(expr);
+        return docClient.query(expr).promise();
+    }
+
     update(obj) {
         const expr = dynamoDBUtils.buildUpdate(this.table, this.keys, obj);
         return docClient.update(expr).promise();

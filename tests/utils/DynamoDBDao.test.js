@@ -46,6 +46,26 @@ describe("DyanmoDBDao", () => {
         });
     });
 
+    test("it queries for objects", () => {
+        const { dynamo } = setup();
+
+        const obj = {
+            id: 1,
+            name: "Eric"
+        };
+
+        const expected = {
+            ExpressionAttributeNames: { "#id": "id", "#name": "name" },
+            ExpressionAttributeValues: { ":id": 1, ":name": "Eric" },
+            KeyConditionExpression: "#id = :id and #name = :name",
+            TableName: "FakeTable"
+        };
+
+        return dynamo.query(obj).then(result => {
+            expect(result).toEqual(expected);
+        });
+    });
+
     test("it updates an object", () => {
         const { dynamo } = setup();
 

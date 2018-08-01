@@ -21,6 +21,34 @@ class DynamoDBUtils {
         return result;
     }
 
+    buildQuery(table, keys, object) {
+        let result = {
+            TableName: table,
+            KeyConditionExpression: "",
+            ExpressionAttributeNames: {},
+            ExpressionAttributeValues: {}
+        };
+
+        let i = 0;
+        for (let key in object) {
+            let newKey = "#" + key;
+            let value = object[key];
+            let placeholder = ":" + key;
+            result.ExpressionAttributeNames[newKey] = key;
+            result.ExpressionAttributeValues[placeholder] = value;
+
+            if (i !== 0) {
+                result.KeyConditionExpression += " and ";
+            }
+
+            result.KeyConditionExpression += newKey + " = " + placeholder;
+
+            i++;
+        }
+
+        return result;
+    }
+
     buildUpdate(table, keys, object) {
         let result = {
             TableName: table,

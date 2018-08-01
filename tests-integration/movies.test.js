@@ -40,6 +40,20 @@ describe("Movies API integration test", () => {
             });
     });
 
+    test("should return a list of movies", () => {
+        const expected = [];
+
+        //Query condition missed key schema element
+
+        return request(url)
+            .get("/movies?year=1988")
+            .set("Accept", "application/json")
+            .expect(200)
+            .then(response => {
+                expect(response.body.Count).toEqual(51);
+            });
+    });
+
     test("create/replace a  movie", () => {
         const movie = {
             year: 2015,
@@ -70,11 +84,7 @@ describe("Movies API integration test", () => {
             }
         };
 
-        const expected = {
-            Attributes: {
-                info: { plot: "Nothing happens at all. again", rating: 2 }
-            }
-        };
+        const expected = {};
 
         return request(url)
             .put("/movies/2015/The Big New Movie")

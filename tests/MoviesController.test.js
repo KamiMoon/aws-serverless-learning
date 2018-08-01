@@ -22,6 +22,23 @@ describe("handleMoviesRequest", () => {
         });
     });
 
+    test("handles get request for list", () => {
+        const event = {
+            httpMethod: "GET"
+        };
+
+        const expected = {
+            ExpressionAttributeNames: {},
+            ExpressionAttributeValues: {},
+            KeyConditionExpression: "",
+            TableName: "Movies"
+        };
+
+        return handleMoviesRequest(event).then(result => {
+            expect(result).toEqual(expected);
+        });
+    });
+
     test("handles post request", () => {
         const movie = {
             year: 2015,

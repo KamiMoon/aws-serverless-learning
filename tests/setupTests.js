@@ -16,6 +16,9 @@ jest.mock("src/utils/AWSDocClient", () => {
         get: obj => {
             return buildPromiseObj(obj);
         },
+        query: obj => {
+            return buildPromiseObj(obj);
+        },
         update: obj => {
             return buildPromiseObj(obj);
         },

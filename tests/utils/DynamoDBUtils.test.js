@@ -50,6 +50,50 @@ describe("DynamoDBUtils", () => {
         expect(result).toEqual(expected);
     });
 
+    test("builds a query", () => {
+        const table = "SomeTable";
+        const keys = ["name"];
+
+        let obj = {
+            name: "Eric"
+        };
+
+        let expected = {
+            TableName: "SomeTable",
+            KeyConditionExpression: "#name = :name",
+            ExpressionAttributeNames: {
+                "#name": "name"
+            },
+            ExpressionAttributeValues: {
+                ":name": "Eric"
+            }
+        };
+
+        let result = dynamoDBUtils.buildQuery(table, keys, obj);
+
+        obj = {
+            name: "Eric",
+            age: 31
+        };
+
+        expected = {
+            TableName: "SomeTable",
+            KeyConditionExpression: "#name = :name and #age = :age",
+            ExpressionAttributeNames: {
+                "#name": "name",
+                "#age": "age"
+            },
+            ExpressionAttributeValues: {
+                ":name": "Eric",
+                ":age": 31
+            }
+        };
+
+        result = dynamoDBUtils.buildQuery(table, keys, obj);
+
+        expect(result).toEqual(expected);
+    });
+
     test("builds update", () => {
         const table = "SomeTable";
         const keys = ["name"];
