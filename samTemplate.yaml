@@ -33,7 +33,7 @@ Resources:
          - AttributeName: 'year'
            AttributeType: 'N'
          - AttributeName: 'title'
-           KeyType: 'S'
+           AttributeType: 'S'
        KeySchema: 
          - AttributeName: 'year'
            KeyType: 'HASH'
