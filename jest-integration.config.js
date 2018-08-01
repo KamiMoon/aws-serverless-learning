@@ -1,7 +1,7 @@
 module.exports = {
     testMatch: [
-        "<rootDir>/integration_tests/**/__tests__/**/*.js?(x)",
-        "<rootDir>/integration_tests/**/?(*.)(spec|test).js?(x)"
+        "<rootDir>/tests-integration/**/__tests__/**/*.js?(x)",
+        "<rootDir>/tests-integration/**/?(*.)(spec|test).js?(x)"
     ],
     testEnvironment: "node",
     moduleNameMapper: {

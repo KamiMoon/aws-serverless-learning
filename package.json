@@ -9,7 +9,7 @@
         "build": "webpack --config webpack.config.js",
         "watch": "webpack --watch",
         "test": "jest",
-        "integration": "jest --config jestIntegration.config.js",
+        "integration": "jest --config jest-integration.config.js",
         "api": "sam local start-api --template samTemplate.yaml --docker-network aws-local-network"
     },
     "repository": {
