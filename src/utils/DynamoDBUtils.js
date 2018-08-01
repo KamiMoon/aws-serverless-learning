@@ -26,8 +26,8 @@ class DynamoDBUtils {
             TableName: table,
             Key: {},
             UpdateExpression: "",
-            ExpressionAttributeValues: {},
-            ReturnValues: "UPDATED_NEW"
+            ExpressionAttributeValues: {}
+            //ReturnValues: "ALL_NEW"
         };
 
         keys.forEach(k => {

@@ -57,7 +57,7 @@ describe("DyanmoDBDao", () => {
         const expected = {
             ExpressionAttributeValues: { ":name": "Eric" },
             Key: { id: 1 },
-            ReturnValues: "UPDATED_NEW",
+            //ReturnValues: "UPDATED_NEW",
             TableName: "FakeTable",
             UpdateExpression: "SET name = :name"
         };

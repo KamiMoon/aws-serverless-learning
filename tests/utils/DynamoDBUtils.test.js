@@ -78,8 +78,8 @@ describe("DynamoDBUtils", () => {
                     plot: "Nothing happens at all. again",
                     rating: 1
                 }
-            },
-            ReturnValues: "UPDATED_NEW"
+            }
+            //ReturnValues: "UPDATED_NEW"
         };
 
         expect(result).toEqual(expected);
