@@ -4,6 +4,7 @@ const AWS = require("aws-sdk");
 AWS.config.update({
     region: "us-east-2",
     //endpoint: "http://localhost:8000"
+    //TODO: how?
     endpoint: "http://192.168.99.100:8000"
 });
 
