@@ -1,6 +1,6 @@
 class DynamoDBUtils {
     buildCreate(table, object) {
-        let result = {
+        const result = {
             TableName: table,
             Item: object
         };
@@ -9,7 +9,7 @@ class DynamoDBUtils {
     }
 
     buildGet(table, keys, object) {
-        let result = {
+        const result = {
             TableName: table,
             Key: {}
         };
@@ -22,7 +22,7 @@ class DynamoDBUtils {
     }
 
     buildQuery(table, keys, object) {
-        let result = {
+        const result = {
             TableName: table,
             KeyConditionExpression: "",
             ExpressionAttributeNames: {},
@@ -30,10 +30,10 @@ class DynamoDBUtils {
         };
 
         let i = 0;
-        for (let key in object) {
-            let newKey = "#" + key;
-            let value = object[key];
-            let placeholder = ":" + key;
+        for (const key in object) {
+            const newKey = "#" + key;
+            const value = object[key];
+            const placeholder = ":" + key;
             result.ExpressionAttributeNames[newKey] = key;
             result.ExpressionAttributeValues[placeholder] = value;
 
@@ -50,7 +50,7 @@ class DynamoDBUtils {
     }
 
     buildUpdate(table, keys, object) {
-        let result = {
+        const result = {
             TableName: table,
             Key: {},
             UpdateExpression: "",
@@ -64,8 +64,8 @@ class DynamoDBUtils {
         });
 
         let i = 0;
-        for (let key in object) {
-            let value = object[key];
+        for (const key in object) {
+            const value = object[key];
 
             if (i === 0) {
                 result.UpdateExpression += "SET " + key + " = :" + key;
@@ -82,7 +82,7 @@ class DynamoDBUtils {
     }
 
     buildDelete(table, keys, object) {
-        let result = {
+        const result = {
             TableName: table,
             Key: {}
         };

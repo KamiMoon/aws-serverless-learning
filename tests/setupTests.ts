@@ -9,7 +9,7 @@ jest.mock("src/utils/AWSDocClient", () => {
         };
     }
 
-    return {
+    const mockAws = {
         put: obj => {
             return buildPromiseObj(obj);
         },
@@ -25,5 +25,10 @@ jest.mock("src/utils/AWSDocClient", () => {
         delete: obj => {
             return buildPromiseObj(obj);
         }
+    };
+
+    return {
+        //default key required by ts https://github.com/kulshekhar/ts-jest/issues/120
+        default: mockAws
     };
 });

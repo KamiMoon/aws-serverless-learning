@@ -27,3 +27,9 @@ TODO:
 4.  Config swtich db local/prod
 5.  Data stay/config local
 6.  Distrubtion size - don't include dev deps
+
+1) url needs to be decoded: decodeURIComponent("The%20Big%20New%20Movie")
+
+https://dujxlnj50a.execute-api.us-east-2.amazonaws.com/Prod/movies/2015/The%20Big%20New%20Movie
+
+2.

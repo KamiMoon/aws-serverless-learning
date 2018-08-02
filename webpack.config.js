@@ -1,11 +1,12 @@
-const path = require('path');
-const nodeExternals = require('webpack-node-externals');
+const path = require("path");
+const nodeExternals = require("webpack-node-externals");
 
 module.exports = {
-    target: 'node', // in order to ignore built-in modules like path, fs, etc.
+    devtool: "source-map",
+    target: "node", // in order to ignore built-in modules like path, fs, etc.
     externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
     entry: {
-        main: './src/index.js'
+        main: "./src/index.ts"
     },
     output: {
         path: path.join(__dirname, "dist"),
@@ -14,27 +15,34 @@ module.exports = {
         filename: "[name].js"
     },
     resolve: {
+        extensions: [".ts", ".tsx", ".js"],
         alias: {
-            'src': path.resolve(__dirname, 'src/')
+            src: path.resolve(__dirname, "src/")
         }
     },
     module: {
         rules: [
-            // First, run the linter.
-            // It's important to do this before Babel processes the JS.
             {
+                test: /\.ts$/,
                 enforce: "pre",
-                test: /\.js$/,
                 exclude: /node_modules/,
-                loader: "eslint-loader",
-                options: {
-                    quiet: true,
-                }
+                use: [
+                    {
+                        loader: "tslint-loader"
+                    }
+                ]
             },
             {
-                test: /\.js$/,
+                test: /\.(t|j)sx?$/,
                 exclude: /node_modules/,
-                loader: "babel-loader"
+                use: { loader: "awesome-typescript-loader" }
+            },
+            // addition - add source-map support
+            {
+                enforce: "pre",
+                exclude: /node_modules/,
+                test: /\.js$/,
+                loader: "source-map-loader"
             }
         ]
     }

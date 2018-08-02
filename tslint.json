@@ -1,0 +1,13 @@
+{
+    "extends": ["tslint:latest", "tslint-config-prettier"],
+    "rules": {
+        "no-var-requires": false,
+        "comment-format": false,
+        "object-literal-sort-keys": false,
+        "no-implicit-dependencies": false,
+        "no-submodule-imports": false,
+        "member-access": false,
+        "no-console": false,
+        "forin": false
+    }
+}

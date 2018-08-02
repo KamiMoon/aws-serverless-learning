@@ -1,4 +1,4 @@
-import handleMoviesRequest from "src/MoviesController";
+import { handleMoviesRequest } from "src/MoviesController";
 
 //TODO: mock out moviesDao - this is wrong
 

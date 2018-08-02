@@ -71,12 +71,12 @@ describe("DynamoDBUtils", () => {
 
         let result = dynamoDBUtils.buildQuery(table, keys, obj);
 
-        obj = {
+        let obj2 = {
             name: "Eric",
             age: 31
         };
 
-        expected = {
+        let expected2 = {
             TableName: "SomeTable",
             KeyConditionExpression: "#name = :name and #age = :age",
             ExpressionAttributeNames: {
@@ -89,9 +89,9 @@ describe("DynamoDBUtils", () => {
             }
         };
 
-        result = dynamoDBUtils.buildQuery(table, keys, obj);
+        result = dynamoDBUtils.buildQuery(table, keys, obj2);
 
-        expect(result).toEqual(expected);
+        expect(result).toEqual(expected2);
     });
 
     test("builds update", () => {

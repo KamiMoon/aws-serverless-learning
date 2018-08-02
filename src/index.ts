@@ -1,6 +1,6 @@
-import handleMoviesRequest from "src/MoviesController";
+import { handleMoviesRequest } from "src/MoviesController";
 
-export const handler = async (event, context) => {
+export const handler = async (event, context?) => {
     let response = null;
 
     try {

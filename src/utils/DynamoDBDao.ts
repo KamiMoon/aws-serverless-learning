@@ -2,6 +2,9 @@ import docClient from "src/utils/AWSDocClient";
 import dynamoDBUtils from "src/utils/DynamoDBUtils";
 
 export default class DyanmoDBDao {
+    table;
+    keys;
+
     constructor(table, keys) {
         this.table = table;
         this.keys = keys;
