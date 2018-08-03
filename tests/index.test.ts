@@ -11,8 +11,7 @@ describe("Handler", () => {
         };
 
         const expected = {
-            body:
-                '{"TableName":"Movies","Key":{"year":1900,"title":"Some Movie"}}',
+            body: '{"year":1900,"title":"Some Movie"}',
             statusCode: 200
         };
 

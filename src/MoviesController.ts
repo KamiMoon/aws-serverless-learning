@@ -1,6 +1,9 @@
-import moviesDao from "src/MoviesDao";
+//import moviesDao from "src/MoviesDao";
+import { MoviesDao } from "src/dao/MoviesDao";
 
-export function handleMoviesRequest(event: any, context?: any): Promise<any> {
+const moviesDao = new MoviesDao();
+
+export function handleMoviesRequest(event, context?: any) {
     const params = event.pathParameters || {};
     const body = event.body || {};
     const queryParams = event.queryStringParameters || {};

@@ -8,6 +8,7 @@
         "no-submodule-imports": false,
         "member-access": false,
         "no-console": false,
-        "forin": false
+        "forin": false,
+        "variable-name": false
     }
 }

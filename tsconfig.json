@@ -8,13 +8,15 @@
         "target": "es5", // specify ECMAScript target version
         "allowJs": true, // allow a partial TypeScript and JavaScript codebase,
         "moduleResolution": "node",
-        "lib": ["es5", "es2015.promise"],
+        "lib": ["es5", "es6", "es2015.promise", "esnext.asynciterable"],
         "noEmit": true,
         "baseUrl": ".",
         "paths": {
             "src/*": ["src/*"]
-        }
+        },
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
     },
-    "exclude": ["**/node_modules/**/*"],
+    //"exclude": ["**/node_modules/**/*"],
     "include": ["./src/", "./tests/"]
 }

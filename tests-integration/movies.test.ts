@@ -7,27 +7,25 @@ const url = "http://127.0.0.1:3000";
 
 describe("Movies API integration test", () => {
     test("should get a movie", () => {
-        let expected = {
-            Item: {
-                title: "Hotaru no haka",
-                year: 1988,
-                info: {
-                    actors: [
-                        "Tsutomu Tatsumi",
-                        "Ayano Shiraishi",
-                        "Akemi Yamaguchi"
-                    ],
-                    release_date: "1988-04-16T00:00:00Z",
-                    plot:
-                        "A tragic film covering a young boy and his little sister's struggle to survive in Japan during World War II.",
-                    genres: ["Animation", "Drama", "War"],
-                    image_url:
-                        "http://ia.media-imdb.com/images/M/MV5BMjA0MzgwMTU4MV5BMl5BanBnXkFtZTcwODYxNjEzMQ@@._V1_SX400_.jpg",
-                    directors: ["Isao Takahata"],
-                    rating: 8.4,
-                    rank: 1867,
-                    running_time_secs: 5340
-                }
+        const expected = {
+            title: "Hotaru no haka",
+            year: 1988,
+            info: {
+                actors: [
+                    "Tsutomu Tatsumi",
+                    "Ayano Shiraishi",
+                    "Akemi Yamaguchi"
+                ],
+                release_date: "1988-04-16T00:00:00Z",
+                plot:
+                    "A tragic film covering a young boy and his little sister's struggle to survive in Japan during World War II.",
+                genres: ["Animation", "Drama", "War"],
+                image_url:
+                    "http://ia.media-imdb.com/images/M/MV5BMjA0MzgwMTU4MV5BMl5BanBnXkFtZTcwODYxNjEzMQ@@._V1_SX400_.jpg",
+                directors: ["Isao Takahata"],
+                rating: 8.4,
+                rank: 1867,
+                running_time_secs: 5340
             }
         };
 
@@ -50,7 +48,7 @@ describe("Movies API integration test", () => {
             .set("Accept", "application/json")
             .expect(200)
             .then(response => {
-                expect(response.body.Count).toEqual(51);
+                expect(response.body.length).toEqual(51);
             });
     });
 
@@ -70,7 +68,7 @@ describe("Movies API integration test", () => {
             .set("Accept", "application/json")
             .expect(200)
             .then(response => {
-                expect(response.body).toEqual({});
+                expect(response.body).toEqual(movie);
             });
     });
 
@@ -84,15 +82,13 @@ describe("Movies API integration test", () => {
             }
         };
 
-        const expected = {};
-
         return request(url)
             .put("/movies/2015/The Big New Movie")
             .send(movie) // sends a JSON post body
             .set("Accept", "application/json")
             .expect(200)
             .then(response => {
-                expect(response.body).toEqual(expected);
+                expect(response.body).toEqual(movie);
             });
     });
 
@@ -102,7 +98,11 @@ describe("Movies API integration test", () => {
             title: "The Big New Movie"
         };
 
-        const expected = {};
+        const expected = {
+            info: { plot: "Nothing happens at all. again", rating: 2 },
+            title: "The Big New Movie",
+            year: 2015
+        };
 
         return request(url)
             .delete("/movies/2015/The Big New Movie")

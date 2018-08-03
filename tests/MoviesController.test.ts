@@ -12,10 +12,7 @@ describe("handleMoviesRequest", () => {
             }
         };
 
-        const expected = {
-            Key: { title: "Some Movie", year: 1900 },
-            TableName: "Movies"
-        };
+        const expected = { title: "Some Movie", year: 1900 };
 
         return handleMoviesRequest(event).then(result => {
             expect(result).toEqual(expected);
@@ -27,15 +24,8 @@ describe("handleMoviesRequest", () => {
             httpMethod: "GET"
         };
 
-        const expected = {
-            ExpressionAttributeNames: {},
-            ExpressionAttributeValues: {},
-            KeyConditionExpression: "",
-            TableName: "Movies"
-        };
-
         return handleMoviesRequest(event).then(result => {
-            expect(result).toEqual(expected);
+            expect(result).toEqual([{}]);
         });
     });
 
@@ -54,17 +44,8 @@ describe("handleMoviesRequest", () => {
             body: JSON.stringify(movie)
         };
 
-        const expected = {
-            Item: {
-                info: { plot: "Nothing happens at all.", rating: 0 },
-                title: "The Big New Movie",
-                year: 2015
-            },
-            TableName: "Movies"
-        };
-
         return handleMoviesRequest(event).then(result => {
-            expect(result).toEqual(expected);
+            expect(result).toEqual(movie);
         });
     });
 
@@ -83,17 +64,8 @@ describe("handleMoviesRequest", () => {
             body: JSON.stringify(movie)
         };
 
-        const expected = {
-            ExpressionAttributeValues: {
-                ":info": { plot: "Nothing happens at all.", rating: 0 }
-            },
-            Key: { title: "The Big New Movie", year: 2015 },
-            TableName: "Movies",
-            UpdateExpression: "SET info = :info"
-        };
-
         return handleMoviesRequest(event).then(result => {
-            expect(result).toEqual(expected);
+            expect(result).toEqual(movie);
         });
     });
 
@@ -108,13 +80,8 @@ describe("handleMoviesRequest", () => {
             body: JSON.stringify(movie)
         };
 
-        const expected = {
-            Key: { title: "The Big New Movie", year: 2015 },
-            TableName: "Movies"
-        };
-
         return handleMoviesRequest(event).then(result => {
-            expect(result).toEqual(expected);
+            expect(result).toEqual(movie);
         });
     });
 
