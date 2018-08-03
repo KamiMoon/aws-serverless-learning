@@ -33,3 +33,5 @@ TODO:
 https://dujxlnj50a.execute-api.us-east-2.amazonaws.com/Prod/movies/2015/The%20Big%20New%20Movie
 
 2.
+
+https://github.com/awslabs/dynamodb-data-mapper-js
