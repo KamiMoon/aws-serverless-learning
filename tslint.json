@@ -9,6 +9,7 @@
         "member-access": false,
         "no-console": false,
         "forin": false,
-        "variable-name": false
+        "variable-name": false,
+        "ordered-imports": false
     }
 }

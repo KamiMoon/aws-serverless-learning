@@ -1,48 +1,66 @@
 //import moviesDao from "src/MoviesDao";
 import { MoviesDao } from "src/dao/MoviesDao";
+import { bindRequest } from "src/utils/RequestBinding";
 
 const moviesDao = new MoviesDao();
 
+const requestSchema = {
+    year: "int",
+    title: "string"
+};
+
 export function handleMoviesRequest(event, context?: any) {
-    const params = event.pathParameters || {};
-    const body = event.body || {};
-    const queryParams = event.queryStringParameters || {};
+    const pathParams = bindRequest(requestSchema, event.pathParameters);
+    const body = event.body ? JSON.parse(event.body) : {};
+    const queryParams = bindRequest(requestSchema, event.queryStringParameters);
 
     console.log("method: ", event.httpMethod);
-    console.log("params: ", params);
+    console.log("params: ", pathParams);
     console.log("queryParams", queryParams);
     console.log("body:", body);
 
     //TODO: validation and data type conversion
     switch (event.httpMethod) {
         case "GET":
-            if (
-                params.year &&
-                params.title &&
-                Object.keys(params).length === 2
-            ) {
-                //TODO: Better
-                params.year = parseInt(params.year, 10);
-                return moviesDao.get(params);
-            }
-
-            if (queryParams.year) {
-                queryParams.year = parseInt(queryParams.year, 10);
-            }
-            //TODO year should fail because of type
-            return moviesDao.query(queryParams);
-
+            return handleGet(pathParams, queryParams);
         case "POST":
-            return moviesDao.create(JSON.parse(body));
+            return handlePost(body);
         case "PUT":
-            return moviesDao.update(JSON.parse(body));
+            return handlePut(body);
         case "DELETE":
-            return moviesDao.remove(JSON.parse(body));
+            return handleDelete(body);
         default:
-            //TODO: handle this better
-            console.log("Not matched");
-            return new Promise((resolve, reject) => {
-                reject({});
-            });
+            return handleNotMatched();
     }
+}
+
+function handleGet(pathParams, queryParams) {
+    if (
+        pathParams.year &&
+        pathParams.title &&
+        Object.keys(pathParams).length === 2
+    ) {
+        return moviesDao.get(pathParams);
+    }
+    return moviesDao.query(queryParams);
+}
+
+function handlePost(body) {
+    return moviesDao.create(body);
+}
+
+function handlePut(body) {
+    return moviesDao.update(body);
+}
+
+function handleDelete(body) {
+    return moviesDao.remove(body);
+}
+
+function handleNotMatched() {
+    //TODO: handle this better
+    console.log("Not matched");
+    return new Promise((resolve, reject) => {
+        reject({});
+    });
 }
