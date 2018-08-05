@@ -4,6 +4,7 @@ const request = require("supertest");
 
 //TODO configurable
 const url = "http://127.0.0.1:3000";
+//const url = "https://dujxlnj50a.execute-api.us-east-2.amazonaws.com/Prod"
 
 describe("Movies API integration test", () => {
     test("should get a movie", () => {

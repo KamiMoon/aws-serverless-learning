@@ -14,6 +14,10 @@ Integration tests
 
 npm run integration
 
+Proxy for mobile:
+
+npm run proxy
+
 TODO:
 
 1.  Finish API
