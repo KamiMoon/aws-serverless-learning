@@ -15,7 +15,7 @@ export function handleMoviesRequest(event, context?: any) {
     const queryParams = bindRequest(requestSchema, event.queryStringParameters);
 
     console.log("method: ", event.httpMethod);
-    console.log("params: ", pathParams);
+    console.log("pathParams: ", pathParams);
     console.log("queryParams", queryParams);
     console.log("body:", body);
 
@@ -28,7 +28,7 @@ export function handleMoviesRequest(event, context?: any) {
         case "PUT":
             return handlePut(body);
         case "DELETE":
-            return handleDelete(body);
+            return handleDelete(pathParams);
         default:
             return handleNotMatched();
     }
@@ -53,8 +53,8 @@ function handlePut(body) {
     return moviesDao.update(body);
 }
 
-function handleDelete(body) {
-    return moviesDao.remove(body);
+function handleDelete(pathParams) {
+    return moviesDao.remove(pathParams);
 }
 
 function handleNotMatched() {

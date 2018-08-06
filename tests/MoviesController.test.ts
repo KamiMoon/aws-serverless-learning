@@ -70,18 +70,18 @@ describe("handleMoviesRequest", () => {
     });
 
     test("handles delete request", () => {
-        const movie = {
-            year: 2015,
-            title: "The Big New Movie"
-        };
-
         const event = {
             httpMethod: "DELETE",
-            body: JSON.stringify(movie)
+            pathParameters: {
+                year: "2015",
+                title: "The Big New Movie"
+            }
         };
 
+        const expected = { title: "The Big New Movie", year: 2015 };
+
         return handleMoviesRequest(event).then(result => {
-            expect(result).toEqual(movie);
+            expect(result).toEqual(expected);
         });
     });
 

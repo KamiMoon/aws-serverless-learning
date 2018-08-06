@@ -3,8 +3,10 @@
 const request = require("supertest");
 
 //TODO configurable
-const url = "http://127.0.0.1:3000";
+//const url = "http://127.0.0.1:3000";
 //const url = "https://dujxlnj50a.execute-api.us-east-2.amazonaws.com/Prod"
+
+const url = "http://192.168.0.8:8000";
 
 describe("Movies API integration test", () => {
     test("should get a movie", () => {
@@ -49,7 +51,7 @@ describe("Movies API integration test", () => {
             .set("Accept", "application/json")
             .expect(200)
             .then(response => {
-                expect(response.body.length).toEqual(51);
+                expect(response.body.length > 0).toEqual(true);
             });
     });
 
@@ -94,11 +96,6 @@ describe("Movies API integration test", () => {
     });
 
     test("deletes a movie", () => {
-        const movie = {
-            year: 2015,
-            title: "The Big New Movie"
-        };
-
         const expected = {
             info: { plot: "Nothing happens at all. again", rating: 2 },
             title: "The Big New Movie",
@@ -107,7 +104,6 @@ describe("Movies API integration test", () => {
 
         return request(url)
             .delete("/movies/2015/The Big New Movie")
-            .send(movie) // sends a JSON post body
             .set("Accept", "application/json")
             .expect(200)
             .then(response => {

@@ -16,7 +16,6 @@ export class MoviesDao {
         const results: any[] = [];
 
         for await (const movieResult of dataMapper.query(Movies, obj)) {
-            console.log(movieResult);
             results.push(movieResult);
         }
 
