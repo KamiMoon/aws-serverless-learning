@@ -2,7 +2,7 @@ import { DataMapper } from "@aws/dynamodb-data-mapper";
 import DynamoDB = require("aws-sdk/clients/dynamodb");
 
 const config = {
-    region: "us-east-2"
+    region: "us-east-2",
     //TODO: Make this more configurable
     //uncomment for local
     //comment out for prod

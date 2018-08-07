@@ -1,6 +1,4 @@
-import { handleMoviesRequest } from "src/MoviesController";
-
-//TODO: mock out moviesDao - this is wrong
+import { handleMoviesRequest } from "src/controller/MoviesController";
 
 describe("handleMoviesRequest", () => {
     test("handles get request", () => {

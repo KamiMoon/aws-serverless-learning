@@ -1,0 +1,4 @@
+- login/auth/authorization - JWT?
+- configuration - local/test/prod
+- search api?
+- users

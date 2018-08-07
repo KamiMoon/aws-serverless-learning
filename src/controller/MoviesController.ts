@@ -1,4 +1,3 @@
-//import moviesDao from "src/MoviesDao";
 import { MoviesDao } from "src/dao/MoviesDao";
 import { bindRequest } from "src/utils/RequestBinding";
 

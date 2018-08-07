@@ -1,4 +1,4 @@
-import { handleMoviesRequest } from "src/MoviesController";
+import { handleMoviesRequest } from "src/controller/MoviesController";
 
 export const handler = async (event, context?) => {
     let response = null;
@@ -7,6 +7,7 @@ export const handler = async (event, context?) => {
         response = await handleMoviesRequest(event, context);
     } catch (err) {
         console.error(err);
+
         return { statusCode: 400, body: JSON.stringify(err) };
     }
     return { statusCode: 200, body: JSON.stringify(response) };

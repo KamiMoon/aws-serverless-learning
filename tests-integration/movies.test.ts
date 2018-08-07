@@ -110,4 +110,23 @@ describe("Movies API integration test", () => {
                 expect(response.body).toEqual(expected);
             });
     });
+
+    test.only("create an invalid movie and get an error", () => {
+        const movie = {};
+
+        return request(url)
+            .post("/movies")
+            .send(movie) // sends a JSON post body
+            .set("Accept", "application/json")
+            .then(response => {
+                expect(response.body.message).toEqual(
+                    "One of the required keys was not given a value"
+                );
+            })
+            .catch(error => {
+                expect(error).toEqual({
+                    msg: "One of the required keys was not given a value"
+                });
+            });
+    });
 });
