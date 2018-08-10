@@ -2,3 +2,31 @@
 - configuration - local/test/prod
 - search api?
 - users
+
+
+User
+    Register
+    login
+    Profile
+    
+
+
+
+Data model for app
+
+Users
+    userinfo
+    favorites[Favorite ids]
+
+
+Favorites
+    movie id
+    seen
+    note
+
+
+Comments
+    movie id
+
+Movies
+    
